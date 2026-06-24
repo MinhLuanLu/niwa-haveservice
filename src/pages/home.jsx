@@ -10,6 +10,9 @@ import { servicesTimes } from "../config";
 import Footer from "../components/footer";
 import { useNavigate } from "react-router-dom";
 
+const galleryModules = import.meta.glob("../assets/gallery/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PNG,WEBP}", { eager: true });
+const galleryImages = Object.values(galleryModules).map((m) => m.default);
+
 
 export default function Home() {
   const navigate = useNavigate();
@@ -115,6 +118,28 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Gallery Preview Section */}
+        {galleryImages.length > 0 && (
+          <section className={styles.gallerySection}>
+            <div className={styles.gallerySectionHeader}>
+              <h2>Galleri</h2>
+              <p>Se vores arbejde</p>
+            </div>
+            <div className={styles.galleryPreviewGrid}>
+              {galleryImages.slice(0, 4).map((src, i) => (
+                <div key={i} className={styles.galleryPreviewCard}>
+                  <img src={src} alt={`Galleri billede ${i + 1}`} className={styles.galleryPreviewImg} />
+                </div>
+              ))}
+            </div>
+            <div className={styles.galleryAction}>
+              <a className={`${styles.btn} ${styles.btnGold}`} onClick={() => navigate("/gallery")}>
+                Se alle billeder →
+              </a>
+            </div>
+          </section>
+        )}
       </div>
 
       {/* Footer */}
