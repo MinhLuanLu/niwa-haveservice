@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/Lugning.module.css";
 import heroImage from "../assets/images/lugning-hero.jpg";
 import Header from "../components/header";
+import Footer from "../components/footer";
 
 export default function Lugning({ phone = "20 14 19 29" }) {
   return (
@@ -45,6 +46,7 @@ export default function Lugning({ phone = "20 14 19 29" }) {
           Ring nu
         </a>
       </section>
+      <Footer />
     </div>
   );
 }

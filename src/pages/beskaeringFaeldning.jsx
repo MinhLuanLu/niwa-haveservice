@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/BeskaeringFaeldning.module.css";
 import heroImage from "../assets/images/beskaering-faeldning-hero.jpg";
 import Header from "../components/header";
+import Footer from "../components/footer";
 
 export default function BeskaeringFaeldning({ phone = "20 14 19 29" }) {
   return (
@@ -44,6 +45,7 @@ export default function BeskaeringFaeldning({ phone = "20 14 19 29" }) {
           Ring nu
         </a>
       </section>
+      <Footer />
     </div>
   );
 }

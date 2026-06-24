@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/Hækkeklipning.module.css";
 import heroImage from "../assets/images/hækkeklipning-hero.jpg";
 import Header from "../components/header";
+import Footer from "../components/footer";
 
 export default function Hækkeklipning({ phone = "20 14 19 29" }) {
   return (
@@ -44,6 +45,7 @@ export default function Hækkeklipning({ phone = "20 14 19 29" }) {
           Ring nu
         </a>
       </section>
+      <Footer />
     </div>
   );
 }

@@ -1,11 +1,10 @@
 import styles from "../styles/Home.module.css";
 import checkMark from "../assets/checkmark.png";
 import Header from "../components/header";
-import logo from "../assets/images/image1.jpg"
-import facebook from "../assets/facebook.png"
+import logo from "../assets/images/image1.jpg";
+import logo2 from "../assets/images/lugning-hero.jpg";
 import leaf from "../assets/leaf.png"
 import leaf1 from "../assets/leaf1.png"
-import instagram from "../assets/instagram.png";
 import { socialLinks } from "../config";
 import { servicesTimes } from "../config";
 import Footer from "../components/footer";
@@ -21,26 +20,23 @@ export default function Home() {
         {/* Hero Section */}
         <section className={styles.hero}>
           <div className={styles.heroCard}>
-            {/* Decorative elements */}
-            <div className={styles.heroDecor}>
-              <img src={leaf} alt="" className={styles.leafDecor1} />
-              <img src={leaf1} alt="" className={styles.leafDecor2} />
-              <img src={leaf1} alt="" className={styles.leafDecor3} />
-            </div>
-            
-            {/* Left content */}
-            <div className={styles.heroLeft}>
-              <span className={styles.heroBadge}>Din faglige haveservice</span>
-              <h1>Hjælp til havearbejde?</h1>
-              <p className={styles.heroTagline}>- En have der føles tryg og rar -</p>
-              <div className={styles.heroStats}>
-                <div className={styles.statItem}>
-                  <span className={styles.statNumber}>5+</span>
-                  <span className={styles.statLabel}>Års erfaring</span>
-                </div>
-                <div className={styles.statItem}>
-                  <span className={styles.statNumber}>100%</span>
-                  <span className={styles.statLabel}>Tilfredshed</span>
+            {/* Left: Photo + green overlay + text */}
+            <div className={styles.heroImageSide}>
+              <img src={logo2} alt="Niwa Haveservice have" className={styles.heroImage} />
+              <div className={styles.heroOverlay} />
+              <div className={styles.heroLeft}>
+                <span className={styles.heroBadge}>Din faglige haveservice</span>
+                <h1>Hjælp til havearbejde?</h1>
+                <p className={styles.heroTagline}>- En have der føles tryg og rar -</p>
+                <div className={styles.heroStats}>
+                  <div className={styles.statItem}>
+                    <span className={styles.statNumber}>5+</span>
+                    <span className={styles.statLabel}>Års erfaring</span>
+                  </div>
+                  <div className={styles.statItem}>
+                    <span className={styles.statNumber}>100%</span>
+                    <span className={styles.statLabel}>Tilfredshed</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -53,30 +49,30 @@ export default function Home() {
                 <p className={styles.pricingValue}>550 kr inkl. Moms.</p>
               </div>
               <ul>
-                <div onClick={() => navigate("/services/hækkeklipning")}>
+                <li onClick={() => navigate("/services/hækkeklipning")}>
                     <img src={checkMark} alt="Checkmark" />
                     <span>Hækkeklipning</span>
-                </div>
-                <div onClick={() => navigate("/services/japanske-beskæringskunst")}>
+                </li>
+                <li onClick={() => navigate("/services/japanske-beskæringskunst")}>
                     <img src={checkMark} alt="Checkmark" />
                     <span>Japanske beskæringskunst</span>
-                </div>
-                <div onClick={() => navigate("/services/beskaering-faeldning")}>
-                    <img src={checkMark} alt="Checkmark" /> 
+                </li>
+                <li onClick={() => navigate("/services/beskaering-faeldning")}>
+                    <img src={checkMark} alt="Checkmark" />
                     <span>Beskæring & Fældning</span>
-                </div>
-                <div onClick={() => navigate("/services/tagrenderensning")}>
+                </li>
+                <li onClick={() => navigate("/services/tagrenderensning")}>
                     <img src={checkMark} alt="Checkmark" />
                     <span>Tagrenderensning</span>
-                </div>
-                <div onClick={() => navigate("/services/lugning")}>
+                </li>
+                <li onClick={() => navigate("/services/lugning")}>
                     <img src={checkMark} alt="Checkmark" />
                     <span>Lugning</span>
-                </div>
-                <div onClick={() => navigate("/services/græsslåning")}>
+                </li>
+                <li onClick={() => navigate("/services/græsslåning")}>
                     <img src={checkMark} alt="Checkmark" />
                     <span>Græsslåning</span>
-                </div>
+                </li>
               </ul>
 
               <a

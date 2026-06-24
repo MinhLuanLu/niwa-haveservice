@@ -28,10 +28,10 @@ export default function Footer() {
                     <strong>FØLG MIG</strong>
                     <div className={styles.socialRow}>
                       <div className={styles.socialBtn} onClick={() => window.open(socialLinks[0].url, "_blank")}>
-                        <img src={facebook} alt="Facebook" style={{width: "50px", height:"40px"}}/>
+                        <img src={facebook} alt="Facebook" />
                       </div>
                       <div className={styles.socialBtn} onClick={() => window.open(socialLinks[1].url, "_blank")}>
-                        <img src={instagram} alt="Instagram" style={{width: "45px", height:"45px"}}/>
+                        <img src={instagram} alt="Instagram" />
                       </div>
                     </div>
                   </div>

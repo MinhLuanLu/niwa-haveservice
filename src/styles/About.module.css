@@ -1,7 +1,8 @@
 .page {
-  background: #fff;
-  color: #1b1b1b;
-  margin-top: 120px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  margin-top: var(--header-height);
+  font-family: var(--font-base);
 }
 
 .container {
@@ -47,8 +48,8 @@
   align-items: center;
   justify-content: center;
   padding: 12px 18px;
-  border-radius: 999px;
-  background: #d5ab4b;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
   color: #151515;
   font-weight: 800;
   text-decoration: none;
@@ -59,9 +60,9 @@
   align-items: center;
   justify-content: center;
   padding: 12px 18px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   border: 2px solid rgba(11, 107, 69, 0.35);
-  color: #0b6b45;
+  color: var(--color-primary);
   font-weight: 800;
   text-decoration: none;
   background: transparent;
@@ -69,7 +70,7 @@
 
 /* Right image */
 .imageCard {
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: #f7f7f7;
@@ -98,14 +99,14 @@
 
 .card {
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 18px;
   background: #fff;
 }
 
 .cardTitle {
   font-weight: 900;
-  color: #0b6b45;
+  color: var(--color-primary);
   margin-bottom: 8px;
 }
 

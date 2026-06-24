@@ -1,4 +1,5 @@
 import Header from "../components/header";
+import Footer from "../components/footer";
 import styles from "../styles/Contact.module.css";
 
 import avatar from "../assets/images/avatar.jpg";
@@ -24,15 +25,16 @@ export default function Contact() {
           <div className={styles.right}>
             <img
               src={avatar}
-              alt="profile"
+              alt="Filip Edison R.A Mogensen"
               className={styles.image}
             />
           </div>
           <p className={styles.helpText}>
-            Har du spørgsmål? Kontakt mig gerne på mail eller telefon - Jeg står klar til at hjælpe
+            Har du spørgsmål? Kontakt mig gerne på mail eller telefon — jeg står klar til at hjælpe.
           </p>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

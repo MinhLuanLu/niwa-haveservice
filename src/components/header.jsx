@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "../styles/Header.module.css";
 import logo from "../assets/logo.jpg";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navList = [
     { name: "Hækkeklipning", href: "/hækkeklipning" },
@@ -15,20 +16,25 @@ export default function Header() {
     { name: "Græsslåning", href: "/Græsslåning" },
   ];
 
+  const isActive = (path) => location.pathname === path;
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         {/* Logo */}
         <div className={styles.logo}>
           <Link to="/">
-            <img src={logo} alt="Logo" />
+            <img src={logo} alt="Niwa Haveservice logo" />
           </Link>
         </div>
 
         {/* Desktop Navigation */}
         <nav className={styles.nav}>
           <div className={styles.dropdown}>
-            <Link to="/services" className={styles.navLink}>
+            <Link
+              to="/services"
+              className={`${styles.navLink} ${isActive("/services") ? styles.navLinkActive : ""}`}
+            >
               JEG TILBYDER
             </Link>
 
@@ -41,7 +47,10 @@ export default function Header() {
             </div>
           </div>
 
-          <Link to="/about" className={styles.navLink}>
+          <Link
+            to="/about"
+            className={`${styles.navLink} ${isActive("/about") ? styles.navLinkActive : ""}`}
+          >
             OM MIG
           </Link>
 
@@ -54,6 +63,7 @@ export default function Header() {
         <button
           className={styles.menuBtn}
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Åbn menu"
         >
           <span />
           <span />
@@ -66,8 +76,13 @@ export default function Header() {
         <div className={styles.mobileMenu}>
           <Link to="/services" onClick={() => setMenuOpen(false)}>JEG TILBYDER</Link>
           {navList.map((item, index) => (
-            <Link key={index} to={`/services${item.href}`} onClick={() => setMenuOpen(false)}>
-              └ {item.name}
+            <Link
+              key={index}
+              to={`/services${item.href}`}
+              className={styles.mobileSubItem}
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.name}
             </Link>
           ))}
           <Link to="/about" onClick={() => setMenuOpen(false)}>OM MIG</Link>

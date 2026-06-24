@@ -1,10 +1,10 @@
 /* Page */
 .page {
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-  background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
-  color: #2d2d2d;
+  font-family: var(--font-base);
+  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-surface) 100%);
+  color: var(--color-text);
   min-height: 100vh;
-  padding-top: 120px;
+  padding-top: var(--header-height);
 }
 
 /* Container */
@@ -23,7 +23,7 @@
 .title {
   font-size: 48px;
   font-weight: 700;
-  color: #0b6b45;
+  color: var(--color-primary);
   margin-bottom: 16px;
   letter-spacing: -0.5px;
 }
@@ -46,7 +46,7 @@
 /* Service Card */
 .serviceCard {
   background: #fff;
-  border-radius: 20px;
+  border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(0, 0, 0, 0.04);
@@ -71,7 +71,7 @@
 }
 
 .serviceCard:hover .learnMore {
-  color: #d5ab4b;
+  color: var(--color-accent);
 }
 
 /* Image Wrapper */
@@ -110,7 +110,7 @@
 .serviceTitle {
   font-size: 22px;
   font-weight: 600;
-  color: #0b6b45;
+  color: var(--color-primary);
   margin-bottom: 12px;
   letter-spacing: -0.3px;
 }
@@ -126,7 +126,7 @@
 .learnMore {
   font-size: 14px;
   font-weight: 600;
-  color: #0b6b45;
+  color: var(--color-primary);
   transition: color 0.3s ease;
   letter-spacing: 0.3px;
 }

@@ -1,0 +1,61 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* ── Colors ── */
+  --color-primary:       #0b6b45;
+  --color-primary-light: #0ec679;
+  --color-primary-mid:   #078e57;
+  --color-primary-dark:  #094e34;
+
+  --color-accent:        #d5ab4b;
+  --color-accent-hover:  #e0b855;
+  --color-accent-dark:   #c99b3d;
+
+  --color-bg:            #fafaf8;
+  --color-surface:       #ffffff;
+  --color-surface-soft:  #f8f6f1;
+  --color-surface-muted: #f9fafb;
+
+  --color-text:          #1f2937;
+  --color-text-soft:     #4a4a4a;
+  --color-text-muted:    #666666;
+  --color-text-on-dark:  #ffffff;
+
+  --color-border:        rgba(0, 0, 0, 0.08);
+  --color-border-light:  rgba(0, 0, 0, 0.04);
+  --color-border-subtle: #e5e7eb;
+
+  /* ── Layout ── */
+  --header-height:  80px;
+  --max-width:      1100px;
+  --max-width-wide: 1200px;
+
+  /* ── Border radius ── */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-pill: 999px;
+
+  /* ── Typography ── */
+  --font-base:         'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --line-height-base:  1.7;
+  --line-height-tight: 1.15;
+
+  /* ── Shadows ── */
+  --shadow-sm:   0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-md:   0 8px 40px rgba(0, 0, 0, 0.08);
+  --shadow-lg:   0 25px 80px rgba(11, 107, 69, 0.28);
+  --shadow-btn:  0 4px 20px rgba(213, 171, 75, 0.35);
+
+  /* ── Transitions ── */
+  --transition-base:   all 0.25s ease;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
