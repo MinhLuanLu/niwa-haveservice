@@ -54,6 +54,13 @@ export default function Header() {
             OM MIG
           </Link>
 
+          <Link
+            to="/gallery"
+            className={`${styles.navLink} ${isActive("/gallery") ? styles.navLinkActive : ""}`}
+          >
+            GALLERI
+          </Link>
+
           <Link to="/contact" className={styles.contactBtn}>
             KONTAKT MIG
           </Link>
@@ -86,6 +93,7 @@ export default function Header() {
             </Link>
           ))}
           <Link to="/about" onClick={() => setMenuOpen(false)}>OM MIG</Link>
+          <Link to="/gallery" onClick={() => setMenuOpen(false)}>GALLERI</Link>
           <Link to="/contact" className={styles.contactBtn} onClick={() => setMenuOpen(false)}>
             KONTAKT MIG
           </Link>

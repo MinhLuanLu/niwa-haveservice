@@ -9,6 +9,7 @@ import BeskaeringFaeldning from "./pages/beskaeringFaeldning";
 import Tagrenderensning from "./pages/tagrenderensning";
 import Graesslaaning from "./pages/græsslåning";
 import Lugning from "./pages/lugning";
+import Gallery from "./pages/gallery";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services/hækkeklipning" element={<Hækkeklipning />} />
