@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import BeforeAfterPair from "../components/beforeAfterPair";
 import styles from "../styles/Gallery.module.css";
-
-const modules = import.meta.glob("../assets/gallery/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PNG,WEBP}", { eager: true });
-const images = Object.values(modules).map((m) => m.default);
+import { pairs, singles, images } from "../utils/gallery";
 
 export default function Gallery() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -37,13 +36,34 @@ export default function Gallery() {
               <p className={styles.emptyText}>Vi er i gang med at samle billeder — kig forbi igen.</p>
             </div>
           ) : (
-            <div className={styles.grid}>
-              {images.map((src, i) => (
-                <button key={i} className={styles.card} onClick={() => setActiveIndex(i)}>
-                  <img src={src} alt={`Galleri billede ${i + 1}`} className={styles.image} />
-                </button>
-              ))}
-            </div>
+            <>
+              {pairs.length > 0 && (
+                <div className={styles.pairGrid}>
+                  {pairs.map((pair, i) => (
+                    <BeforeAfterPair
+                      key={i}
+                      pair={pair}
+                      onOpen={(kind) => setActiveIndex(i * 2 + (kind === "after" ? 1 : 0))}
+                    />
+                  ))}
+                </div>
+              )}
+
+              {singles.length > 0 && (
+                <div className={styles.grid}>
+                  {singles.map((img, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      className={styles.card}
+                      onClick={() => setActiveIndex(pairs.length * 2 + i)}
+                    >
+                      <img src={img.src} alt={img.alt} className={styles.image} loading="lazy" decoding="async" />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </div>
       </main>
@@ -60,12 +80,14 @@ export default function Gallery() {
             >‹</button>
           )}
 
-          <img
-            src={images[activeIndex]}
-            alt={`Galleri billede ${activeIndex + 1}`}
-            className={styles.lightboxImg}
-            onClick={(e) => e.stopPropagation()}
-          />
+          <figure className={styles.lightboxFigure} onClick={(e) => e.stopPropagation()}>
+            <img
+              src={images[activeIndex].src}
+              alt={images[activeIndex].alt}
+              className={styles.lightboxImg}
+            />
+            <figcaption className={styles.lightboxCaption}>{images[activeIndex].alt}</figcaption>
+          </figure>
 
           {activeIndex < images.length - 1 && (
             <button

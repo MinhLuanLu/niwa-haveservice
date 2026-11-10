@@ -1,0 +1,96 @@
+.pair {
+  margin: 0;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.half {
+  all: unset;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--color-surface-soft);
+}
+
+button.half {
+  cursor: pointer;
+}
+
+button.half:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button.half:hover .image,
+button.half:focus-visible .image {
+  transform: scale(1.04);
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+.badgeAfter {
+  background: var(--color-primary);
+}
+
+@media (max-width: 600px) {
+  .pair {
+    padding: 6px;
+  }
+
+  .images {
+    gap: 6px;
+  }
+
+  .badge {
+    top: 6px;
+    left: 6px;
+    padding: 3px 9px;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pair,
+  .image {
+    transition: none;
+  }
+
+  button.half:hover .image,
+  button.half:focus-visible .image {
+    transform: none;
+  }
+}

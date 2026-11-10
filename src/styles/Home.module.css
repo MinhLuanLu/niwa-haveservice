@@ -8,9 +8,9 @@
 
 /* Container */
 .container {
-  max-width: 100%;
+  max-width: var(--max-width-page);
   margin: 0 auto;
-  padding: 28px 24px;
+  padding: 28px var(--page-gutter);
 }
 
 /* ================= HERO ================= */
@@ -71,6 +71,7 @@
 
 .heroBadge {
   display: inline-block;
+  align-self: flex-start; /* don't stretch across the whole hero */
   background: rgba(213, 171, 75, 0.2);
   border: 1px solid rgba(213, 171, 75, 0.4);
   color: var(--color-accent);
@@ -127,6 +128,55 @@
   font-weight: 400;
 }
 
+/* Trustpilot stat – a link that looks like the other stats */
+.statLink {
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: transform 0.2s ease;
+}
+
+.statLink:hover,
+.statLink:focus-visible {
+  transform: translateY(-2px);
+}
+
+.statLink:hover .statLabel,
+.statLink:focus-visible .statLabel {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* White focus ring – green would vanish on the green hero */
+.statLink:focus-visible {
+  outline-color: #fff;
+  outline-offset: 6px;
+}
+
+.statStar {
+  font-size: 0.8em;
+}
+
+.statSource {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.2px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Service box */
 .listBox {
   background: var(--color-surface-soft);
@@ -152,7 +202,7 @@
   border: 1px solid rgba(11, 107, 69, 0.14);
   border-radius: 12px;
   padding: 12px 14px;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
 .pricingLabel {
@@ -175,22 +225,26 @@
 
 .listBox ul {
   padding-left: 0;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   list-style: none;
 }
 
 .listBox ul li {
-  display: flex;
-  align-items: center;
   margin-bottom: 12px;
-  padding: 8px 12px;
-  border-radius: var(--radius-md);
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  cursor: pointer;
   list-style: none;
 }
 
-.listBox ul li:hover {
+.listBox ul li a {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.listBox ul li a:hover,
+.listBox ul li a:focus-visible {
   background-color: rgba(11, 107, 69, 0.06);
   transform: translateX(4px);
 }
@@ -234,7 +288,8 @@
   cursor: pointer;
 }
 
-.btnGold:hover {
+.btnGold:hover,
+.btnGold:focus-visible {
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(213, 171, 75, 0.45);
   background: linear-gradient(135deg, #e0b855 0%, var(--color-accent) 100%);
@@ -394,6 +449,31 @@
   transform: scale(1.04);
 }
 
+/* Før / Efter pairs on the homepage */
+.galleryPairGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.galleryPairLink {
+  display: block;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: transform 0.25s ease;
+}
+
+.galleryPairLink:hover,
+.galleryPairLink:focus-visible {
+  transform: translateY(-3px);
+}
+
+.galleryPairLink:hover figure,
+.galleryPairLink:focus-visible figure {
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.12);
+}
+
 .galleryAction {
   text-align: center;
 }
@@ -413,7 +493,15 @@
     min-height: 360px;
   }
 
+  /* Let the green area grow with its text instead of clipping it */
+  .heroImage {
+    position: absolute;
+    inset: 0;
+  }
+
   .heroLeft {
+    position: relative;
+    min-height: 360px;
     padding: 36px 28px;
   }
 
@@ -458,8 +546,9 @@
     order: -1;
   }
 
-  .logoBigImg {
-    max-width: 400px;
+  .logoBig {
+    width: 100%;
+    max-width: 480px;
     margin: 0 auto;
   }
 
@@ -475,6 +564,12 @@
   .galleryPreviewGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
+  }
+
+  /* One pair per row – Før/Efter stay side by side */
+  .galleryPairGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
@@ -496,15 +591,19 @@
   }
 
   .heroStats {
-    flex-direction: column;
-    gap: 16px;
+    flex-wrap: wrap;
+    gap: 16px 28px;
+  }
+
+  .heroLeft {
+    min-height: 300px;
   }
 
   .statNumber {
     font-size: 24px;
   }
 
-  .listBox ul li {
+  .listBox ul li a {
     padding: 6px 8px;
   }
 

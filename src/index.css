@@ -7,6 +7,13 @@ html, body {
   padding: 0;
 }
 
+/* Visible keyboard focus everywhere (mouse clicks don't trigger it) */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 :root {
   /* ── Colors ── */
   --color-primary:       #0b6b45;
@@ -36,6 +43,8 @@ html, body {
   --header-height:  80px;
   --max-width:      1100px;
   --max-width-wide: 1200px;
+  --max-width-page: 1600px; /* shared by header + homepage so edges line up */
+  --page-gutter:    24px;
 
   /* ── Border radius ── */
   --radius-sm:   8px;

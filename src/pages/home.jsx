@@ -1,21 +1,27 @@
 import styles from "../styles/Home.module.css";
 import checkMark from "../assets/checkmark.png";
 import Header from "../components/header";
-import logo from "../assets/images/image1.jpg";
 import logo2 from "../assets/images/lugning-hero.jpg";
-import leaf from "../assets/leaf.png"
-import leaf1 from "../assets/leaf1.png"
-import { socialLinks } from "../config";
-import { servicesTimes } from "../config";
 import Footer from "../components/footer";
-import { useNavigate } from "react-router-dom";
+import TrustpilotSection from "../components/trustpilotSection";
+import ImageSlider from "../components/imageSlider";
+import VideoSection from "../components/videoSection";
+import { Link } from "react-router-dom";
+import trustpilot from "../data/trustpilot.json";
 
-const galleryModules = import.meta.glob("../assets/gallery/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PNG,WEBP}", { eager: true });
-const galleryImages = Object.values(galleryModules).map((m) => m.default);
+import BeforeAfterPair from "../components/beforeAfterPair";
+import { pairs as galleryPairs, singles as gallerySingles } from "../utils/gallery";
 
+const heroServices = [
+  { name: "Hækkeklipning", to: "/services/hækkeklipning" },
+  { name: "Japanske beskæringskunst", to: "/services/beskæringskunst" },
+  { name: "Beskæring & Fældning", to: "/services/beskaering-faeldning" },
+  { name: "Tagrenderensning", to: "/services/tagrenderensning" },
+  { name: "Lugning", to: "/services/lugning" },
+  { name: "Græsslåning", to: "/services/græsslåning" },
+];
 
 export default function Home() {
-  const navigate = useNavigate();
   return (
     <div className={styles.page}>
       <div className={styles.container}>
@@ -36,10 +42,24 @@ export default function Home() {
                     <span className={styles.statNumber}>5+</span>
                     <span className={styles.statLabel}>Års erfaring</span>
                   </div>
-                  <div className={styles.statItem}>
-                    <span className={styles.statNumber}>100%</span>
-                    <span className={styles.statLabel}>Tilfredshed</span>
-                  </div>
+                  {/* Trustpilot score – numbers come from src/data/trustpilot.json */}
+                  <a
+                    className={`${styles.statItem} ${styles.statLink}`}
+                    href={trustpilot.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className={styles.statNumber}>
+                      {trustpilot.summary.score}
+                      <span className={styles.statStar} aria-hidden="true"> ★</span>
+                      <span className={styles.statSource}> Trustpilot</span>
+                    </span>
+                    <span className={styles.statLabel}>
+                      {trustpilot.summary.reviewCount} anmeldelser
+                      <span aria-hidden="true"> →</span>
+                      <span className={styles.srOnly}> (åbner i en ny fane)</span>
+                    </span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -47,43 +67,25 @@ export default function Home() {
             {/* Right service box */}
             <div className={styles.listBox}>
               <h3>Havemand til alle dine behov</h3>
+              <ul>
+                {heroServices.map((service) => (
+                  <li key={service.to}>
+                    <Link to={service.to}>
+                      <img src={checkMark} alt="" />
+                      <span>{service.name}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
               <div className={styles.pricingSection}>
                 <span className={styles.pricingLabel}>Pris</span>
                 <p className={styles.pricingValue}>550 kr inkl. Moms.</p>
               </div>
-              <ul>
-                <li onClick={() => navigate("/services/hækkeklipning")}>
-                    <img src={checkMark} alt="Checkmark" />
-                    <span>Hækkeklipning</span>
-                </li>
-                <li onClick={() => navigate("/services/japanske-beskæringskunst")}>
-                    <img src={checkMark} alt="Checkmark" />
-                    <span>Japanske beskæringskunst</span>
-                </li>
-                <li onClick={() => navigate("/services/beskaering-faeldning")}>
-                    <img src={checkMark} alt="Checkmark" />
-                    <span>Beskæring & Fældning</span>
-                </li>
-                <li onClick={() => navigate("/services/tagrenderensning")}>
-                    <img src={checkMark} alt="Checkmark" />
-                    <span>Tagrenderensning</span>
-                </li>
-                <li onClick={() => navigate("/services/lugning")}>
-                    <img src={checkMark} alt="Checkmark" />
-                    <span>Lugning</span>
-                </li>
-                <li onClick={() => navigate("/services/græsslåning")}>
-                    <img src={checkMark} alt="Checkmark" />
-                    <span>Græsslåning</span>
-                </li>
-              </ul>
 
-              <a
-                className={`${styles.btn} ${styles.btnGold}`}
-                onClick={() => navigate("/contact")}
-              >
+              <Link to="/contact" className={`${styles.btn} ${styles.btnGold}`}>
                 KONTAKT MIG →
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -91,7 +93,7 @@ export default function Home() {
         {/* Content Section */}
         <section className={styles.contentGrid}>
           <div className={styles.logoBig}>
-            <img className={styles.logoBigImg} src={logo} alt="Logo" />
+            <ImageSlider />
           </div>
 
           <div className={styles.textContent}>
@@ -119,27 +121,50 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Video Section */}
+        <VideoSection />
+
         {/* Gallery Preview Section */}
-        {galleryImages.length > 0 && (
+        {(galleryPairs.length > 0 || gallerySingles.length > 0) && (
           <section className={styles.gallerySection}>
             <div className={styles.gallerySectionHeader}>
               <h2>Galleri</h2>
               <p>Se vores arbejde</p>
             </div>
-            <div className={styles.galleryPreviewGrid}>
-              {galleryImages.slice(0, 4).map((src, i) => (
-                <div key={i} className={styles.galleryPreviewCard}>
-                  <img src={src} alt={`Galleri billede ${i + 1}`} className={styles.galleryPreviewImg} />
-                </div>
-              ))}
-            </div>
+
+            {galleryPairs.length > 0 ? (
+              /* Før / Efter pairs side by side – each links to the gallery */
+              <div className={styles.galleryPairGrid}>
+                {galleryPairs.slice(0, 2).map((pair, i) => (
+                  <Link
+                    key={i}
+                    to="/gallery"
+                    className={styles.galleryPairLink}
+                    aria-label={`Se projekt ${i + 1} og flere før- og efterbilleder i galleriet`}
+                  >
+                    <BeforeAfterPair pair={pair} />
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className={styles.galleryPreviewGrid}>
+                {gallerySingles.slice(0, 4).map((img, i) => (
+                  <div key={i} className={styles.galleryPreviewCard}>
+                    <img src={img.src} alt={img.alt} className={styles.galleryPreviewImg} loading="lazy" />
+                  </div>
+                ))}
+              </div>
+            )}
             <div className={styles.galleryAction}>
-              <a className={`${styles.btn} ${styles.btnGold}`} onClick={() => navigate("/gallery")}>
+              <Link to="/gallery" className={`${styles.btn} ${styles.btnGold}`}>
                 Se alle billeder →
-              </a>
+              </Link>
             </div>
           </section>
         )}
+
+        {/* Trustpilot Section */}
+        <TrustpilotSection />
       </div>
 
       {/* Footer */}

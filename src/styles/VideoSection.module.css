@@ -1,0 +1,114 @@
+.section {
+  padding: 60px 0 20px;
+}
+
+/* Centred intro above the videos (same style as the Galleri heading) */
+.content {
+  max-width: 620px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+/* Same 2-column grid as the slider section, so each video is as wide as the image */
+.videoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 80px;
+}
+
+/* Height follows each video's own shape */
+.video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  background: #0d1f17;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: rgba(11, 107, 69, 0.08);
+}
+
+.heading {
+  position: relative;
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--color-primary);
+}
+
+.heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+}
+
+.text {
+  margin: 0 auto 28px;
+  max-width: 480px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--color-text-soft);
+}
+
+.cta {
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-decoration: none;
+  color: #1a1a1a;
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  box-shadow: var(--shadow-btn);
+  transition: var(--transition-smooth);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(213, 171, 75, 0.45);
+  background: linear-gradient(135deg, var(--color-accent-hover) 0%, var(--color-accent) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta { transition: none; }
+  .cta:hover, .cta:focus-visible { transform: none; }
+}
+
+/* Tablet / phone: videos stack, same max width as the slider */
+@media (max-width: 900px) {
+  .videoGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .heading { font-size: 28px; }
+}
+
+@media (max-width: 480px) {
+  .cta { width: 100%; padding: 14px 20px; font-size: 14px; }
+}

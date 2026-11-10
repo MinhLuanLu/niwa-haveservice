@@ -27,12 +27,24 @@ export default function Footer() {
                   <div className={styles.socialSection}>
                     <strong>FØLG MIG</strong>
                     <div className={styles.socialRow}>
-                      <div className={styles.socialBtn} onClick={() => window.open(socialLinks[0].url, "_blank")}>
-                        <img src={facebook} alt="Facebook" />
-                      </div>
-                      <div className={styles.socialBtn} onClick={() => window.open(socialLinks[1].url, "_blank")}>
-                        <img src={instagram} alt="Instagram" />
-                      </div>
+                      <a
+                        className={styles.socialBtn}
+                        href={socialLinks[0].url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Facebook (åbner i en ny fane)"
+                      >
+                        <img src={facebook} alt="" />
+                      </a>
+                      <a
+                        className={styles.socialBtn}
+                        href={socialLinks[1].url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram (åbner i en ny fane)"
+                      >
+                        <img src={instagram} alt="" />
+                      </a>
                     </div>
                   </div>
         

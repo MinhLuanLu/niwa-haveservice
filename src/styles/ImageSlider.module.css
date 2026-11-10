@@ -1,0 +1,177 @@
+.slider {
+  width: 100%;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+/* ---------- Image frame ---------- */
+.viewport {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+  background: var(--color-surface-soft);
+  touch-action: pan-y; /* vertical page scroll still works on phones */
+  user-select: none;
+}
+
+/* Absolutely filled so the slides get a real height from the frame */
+.track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* ---------- Prev / next arrows ---------- */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transition: opacity 0.25s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.arrow svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.arrowPrev { left: 14px; }
+.arrowNext { right: 14px; }
+
+/* Arrows appear on hover / keyboard focus (always visible on touch screens) */
+.slider:hover .arrow,
+.arrow:focus-visible {
+  opacity: 1;
+}
+
+.arrow:hover,
+.arrow:focus-visible {
+  color: #fff;
+  background: var(--color-primary);
+}
+
+@media (hover: none) {
+  .arrow {
+    opacity: 1;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* ---------- Dots + pause ---------- */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 24px hit area, small visible dot */
+.dot {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.dot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-pill);
+  background: rgba(11, 107, 69, 0.25);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.dot:hover::before {
+  background: rgba(11, 107, 69, 0.5);
+}
+
+.dotActive::before {
+  width: 22px;
+  background: var(--color-primary);
+}
+
+.playPause {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1.5px solid rgba(11, 107, 69, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--color-primary);
+  background: var(--color-surface);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.playPause:hover {
+  border-color: var(--color-primary);
+  background: rgba(11, 107, 69, 0.06);
+}
+
+.playPause svg {
+  width: 14px;
+  height: 14px;
+}
+
+.filled {
+  fill: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track,
+  .dot::before,
+  .arrow {
+    transition: none;
+  }
+}

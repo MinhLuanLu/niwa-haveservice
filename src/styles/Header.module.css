@@ -13,9 +13,9 @@
 }
 
 .container {
-  max-width: var(--max-width);
+  max-width: var(--max-width-page);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--page-gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,9 +39,14 @@
   opacity: 0.82;
 }
 
+/* logo.jpg is a square with lots of empty space – crop to the artwork */
 .logo img {
-  height: 70px;
-  width: auto;
+  display: block;
+  width: 156px;
+  height: 62px;
+  object-fit: cover;
+  object-position: 50% 47%;
+  mix-blend-mode: multiply; /* hides the jpg's off-white box */
 }
 
 /* ── Navigation ── */
@@ -139,13 +144,34 @@
   border-radius: 0;
 }
 
-.dropdownMenu a:hover {
+.dropdownMenu a:hover,
+.dropdownMenu a:focus-visible {
   background: var(--color-surface-soft);
   opacity: 1;
 }
 
-.dropdown:hover .dropdownMenu {
+.dropdownMenu a:focus-visible {
+  outline-offset: -3px;
+}
+
+/* Invisible bridge over the 10px gap so the menu doesn't close mid-move */
+.dropdownMenu::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+/* Opens on hover AND when tabbing into it with the keyboard */
+.dropdown:hover .dropdownMenu,
+.dropdown:focus-within .dropdownMenu {
   display: flex;
+}
+
+.navLink:focus-visible::after {
+  width: 100%;
 }
 
 /* ── Hamburger ── */
@@ -170,7 +196,20 @@
   background: var(--color-primary);
   margin: 5px 0;
   border-radius: 2px;
-  transition: var(--transition-base);
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+/* Hamburger turns into an X while the menu is open */
+.menuBtnOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menuBtnOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuBtnOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ── Mobile menu ── */
@@ -180,6 +219,15 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .logo img {
+    width: 130px;
+    height: 52px;
+  }
+
   .nav {
     display: none;
   }

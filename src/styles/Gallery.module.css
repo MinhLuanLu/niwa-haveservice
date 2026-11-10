@@ -47,9 +47,18 @@
   gap: 16px;
 }
 
+/* ── Before / after pairs ── */
+.pairGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
 /* ── Card ── */
 .card {
   all: unset;
+  position: relative;
   cursor: pointer;
   display: block;
   background: #ffffff;
@@ -64,8 +73,15 @@
   transform: translateY(-2px);
 }
 
-.card:hover .image {
+.card:hover .image,
+.card:focus-visible .image {
   transform: scale(1.04);
+}
+
+/* `all: unset` removes the default focus ring – put one back */
+.card:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .image {
@@ -113,9 +129,24 @@
   justify-content: center;
 }
 
+.lightboxFigure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.lightboxCaption {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
 .lightboxImg {
   max-width: 90vw;
-  max-height: 85vh;
+  max-height: 80vh;
   object-fit: contain;
   border-radius: 4px;
   display: block;
@@ -182,6 +213,12 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+  /* One pair per row – Før/Efter stay side by side */
+  .pairGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
   .grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
@@ -201,6 +238,7 @@
     grid-template-columns: 1fr;
     gap: 12px;
   }
+
 
   .header {
     margin-bottom: 36px;

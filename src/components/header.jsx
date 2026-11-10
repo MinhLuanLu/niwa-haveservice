@@ -1,35 +1,58 @@
-import React, { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "../styles/Header.module.css";
 import logo from "../assets/logo.jpg";
 
+const navList = [
+  { name: "Hækkeklipning", href: "/hækkeklipning" },
+  { name: "Japanske beskæringskunst", href: "/beskæringskunst" },
+  { name: "Beskæring & Fældning", href: "/beskaering-faeldning" },
+  { name: "Tagrenderensning", href: "/tagrenderensning" },
+  { name: "Lugning", href: "/lugning" },
+  { name: "Græsslåning", href: "/græsslåning" },
+];
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-
-  const navList = [
-    { name: "Hækkeklipning", href: "/hækkeklipning" },
-    { name: "Japanske beskæringskunst", href: "/beskæringskunst" },
-    { name: "Beskæring & Fældning", href: "/beskaering-faeldning" },
-    { name: "Tagrenderensning", href: "/tagrenderensning" },
-    { name: "Lugning", href: "/lugning" },
-    { name: "Græsslåning", href: "/Græsslåning" },
-  ];
+  const headerRef = useRef(null);
 
   const isActive = (path) => location.pathname === path;
+  const closeMenu = () => setMenuOpen(false);
+
+  // Close the mobile menu on Escape or a tap outside the header
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    const onPointerDown = (e) => {
+      if (headerRef.current && !headerRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [menuOpen]);
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} ref={headerRef}>
       <div className={styles.container}>
         {/* Logo */}
         <div className={styles.logo}>
           <Link to="/">
-            <img src={logo} alt="Niwa Haveservice logo" />
+            <img src={logo} alt="Niwa Haveservice – til forsiden" />
           </Link>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className={styles.nav}>
+        <nav className={styles.nav} aria-label="Hovedmenu">
           <div className={styles.dropdown}>
             <Link
               to="/services"
@@ -39,8 +62,8 @@ export default function Header() {
             </Link>
 
             <div className={styles.dropdownMenu}>
-              {navList.map((item, index) => (
-                <Link key={index} to={`/services/${item.href}`}>
+              {navList.map((item) => (
+                <Link key={item.href} to={`/services${item.href}`}>
                   {item.name}
                 </Link>
               ))}
@@ -68,9 +91,12 @@ export default function Header() {
 
         {/* Mobile Hamburger */}
         <button
-          className={styles.menuBtn}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Åbn menu"
+          type="button"
+          className={`${styles.menuBtn} ${menuOpen ? styles.menuBtnOpen : ""}`}
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? "Luk menu" : "Åbn menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
         >
           <span />
           <span />
@@ -80,24 +106,24 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className={styles.mobileMenu}>
-          <Link to="/services" onClick={() => setMenuOpen(false)}>JEG TILBYDER</Link>
-          {navList.map((item, index) => (
+        <nav id="mobile-menu" className={styles.mobileMenu} aria-label="Mobilmenu">
+          <Link to="/services" onClick={closeMenu}>JEG TILBYDER</Link>
+          {navList.map((item) => (
             <Link
-              key={index}
+              key={item.href}
               to={`/services${item.href}`}
               className={styles.mobileSubItem}
-              onClick={() => setMenuOpen(false)}
+              onClick={closeMenu}
             >
               {item.name}
             </Link>
           ))}
-          <Link to="/about" onClick={() => setMenuOpen(false)}>OM MIG</Link>
-          <Link to="/gallery" onClick={() => setMenuOpen(false)}>GALLERI</Link>
-          <Link to="/contact" className={styles.contactBtn} onClick={() => setMenuOpen(false)}>
+          <Link to="/about" onClick={closeMenu}>OM MIG</Link>
+          <Link to="/gallery" onClick={closeMenu}>GALLERI</Link>
+          <Link to="/contact" className={styles.contactBtn} onClick={closeMenu}>
             KONTAKT MIG
           </Link>
-        </div>
+        </nav>
       )}
     </header>
   );

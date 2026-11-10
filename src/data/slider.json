@@ -1,0 +1,17 @@
+[
+  {
+    "file": "image1.jpg",
+    "alt": "Havemand rydder blade fra et bed med en skovl",
+    "position": "40% center"
+  },
+  {
+    "file": "image2.jpg",
+    "alt": "Haveaffald læsses af en trailer på genbrugspladsen",
+    "position": "center 30%"
+  },
+  {
+    "file": "image3.jpg",
+    "alt": "Havemand river blade sammen på en græsplæne",
+    "position": "center 40%"
+  }
+]

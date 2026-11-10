@@ -1,0 +1,298 @@
+.section {
+  padding: 60px 0 40px;
+}
+
+.card {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 48px 40px;
+  text-align: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.heading {
+  margin: 0 0 16px;
+  padding-bottom: 14px;
+  position: relative;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  border-radius: 2px;
+}
+
+.description {
+  max-width: 560px;
+  margin: 0 auto 32px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--color-text-soft);
+}
+
+.summary {
+  margin: -12px auto 32px;
+  font-size: 16px;
+  color: var(--color-text);
+}
+
+.summary strong {
+  color: var(--color-primary);
+}
+
+.updated {
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.reviewGrid {
+  list-style: none;
+  margin: 0 0 36px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  text-align: left;
+}
+
+.review {
+  display: flex;
+}
+
+.figure {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  background: var(--color-surface-soft);
+  border: 1px solid rgba(11, 107, 69, 0.1);
+  border-radius: var(--radius-md);
+}
+
+.rating {
+  margin: 0 0 10px;
+  color: var(--color-accent-dark);
+  font-size: 18px;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.quote {
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.quote p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-soft);
+  font-style: italic;
+}
+
+.author {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.name {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.date {
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+/* ---------- Trustpilot button ---------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 10px 10px 18px;
+  max-width: 100%;
+  text-align: left;
+  text-decoration: none;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border-subtle);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(11, 107, 69, 0.06);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+/* Logo + divider line */
+.logoChip {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-right: 18px;
+  border-right: 1px solid var(--color-border-subtle);
+}
+
+/* The PNG is square with lots of whitespace – crop to the logo itself */
+.logo {
+  display: block;
+  width: 86px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.buttonText {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  line-height: 1.35;
+}
+
+/* Round arrow badge */
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: var(--color-primary);
+  background: rgba(11, 107, 69, 0.08);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 14px 36px rgba(11, 107, 69, 0.16);
+}
+
+.button:hover .arrow,
+.button:focus-visible .arrow {
+  color: #fff;
+  background: var(--color-primary);
+  transform: rotate(45deg);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .button,
+  .arrow {
+    transition: none;
+  }
+
+  .card:hover,
+  .button:hover,
+  .button:focus-visible,
+  .button:hover .arrow,
+  .button:focus-visible .arrow {
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding: 40px 0 24px;
+  }
+
+  .card {
+    padding: 36px 24px;
+  }
+
+  .heading {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 28px 20px;
+  }
+
+  .heading {
+    font-size: 26px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .reviewGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .figure {
+    padding: 18px;
+  }
+
+  .button {
+    width: 100%;
+    gap: 12px;
+    padding: 8px 8px 8px 14px;
+    border-radius: var(--radius-lg);
+  }
+
+  .logoChip {
+    padding-right: 12px;
+  }
+
+  .logo {
+    width: 70px;
+    height: 32px;
+  }
+
+  .buttonText {
+    flex: 1;
+    font-size: 14px;
+  }
+
+  .arrow {
+    width: 38px;
+    height: 38px;
+  }
+}
